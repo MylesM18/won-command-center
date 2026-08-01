@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOMAN OF · Member Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--char:#2B2724;--ink:#4A443E;--grey:#8B857D;--greyl:#B9B2A9;--nude:#EDE6DC;--nudel:#F6F1EA;
+--nuded:#E2D8CB;--line:#E7E1D7;--white:#fff;--pink:#C0396B;--pinkw:#F7E4EC;--bg:#FBF9F5;--sage:#9AAE8E;--gold:#C9A24B}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px 90px}
+header{padding:32px 0 20px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.brand{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:32px;color:var(--char);letter-spacing:.5px;line-height:1}
+.sub{color:var(--grey);font-size:13px;margin-top:6px}
+.hd-right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button{font-family:'Inter';cursor:pointer;border:none;border-radius:9px;font-size:13px;font-weight:600;transition:.15s}
+.btn{background:var(--char);color:var(--nudel);padding:10px 16px}.btn:hover{background:#1f1c19}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-ghost{background:transparent;color:var(--char);border:1px solid var(--nuded);padding:9px 15px}.btn-ghost:hover{background:var(--nudel)}
+.goal{background:linear-gradient(135deg,#fff,#FBF6EE);border:1px solid var(--line);border-radius:18px;padding:24px 26px;margin-bottom:16px}
+.goal-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+.goal-l{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--grey);font-weight:700}
+.goal-nums{font-family:'Cormorant Garamond',serif;color:var(--char);line-height:1}
+.goal-nums .cur{font-size:44px;font-weight:700}.goal-nums .goal-g{font-size:22px;color:var(--greyl)}
+.goal-right{text-align:right}.goal-pct{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--pink);line-height:1}
+.goal-rem{font-size:12px;color:var(--grey);margin-top:2px}
+.bar{height:14px;background:var(--nude);border-radius:20px;margin-top:18px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--pink),#d64f7e);border-radius:20px;width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.ticks{display:flex;justify-content:space-between;margin-top:7px;font-size:11px;color:var(--greyl)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:11px;margin-bottom:16px}
+.kpi{background:var(--white);border:1px solid var(--line);border-radius:13px;padding:15px 16px;position:relative}
+.kpi .kn{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--char);line-height:1}
+.kpi .kl{font-size:11.5px;color:var(--grey);margin-top:5px;line-height:1.35}
+.kpi .ksub{font-size:10.5px;color:var(--greyl);margin-top:3px}
+.kpi.alert{background:var(--pinkw);border-color:#EBC9D6}.kpi.alert .kn{color:var(--pink)}
+.tag-snap{position:absolute;top:11px;right:11px;font-size:9px;letter-spacing:.5px;text-transform:uppercase;color:var(--greyl);background:var(--nudel);padding:2px 6px;border-radius:5px;font-weight:600}
+.cols{display:grid;grid-template-columns:340px 1fr;gap:16px;align-items:start}
+@media(max-width:880px){.cols{grid-template-columns:1fr}}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px}
+.panel h2{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--char);margin-bottom:2px}
+.panel .psub{font-size:12px;color:var(--grey);margin-bottom:16px}
+.pie-wrap{display:flex;flex-direction:column;align-items:center}
+.legend{width:100%;margin-top:16px;display:flex;flex-direction:column;gap:9px}
+.leg{display:flex;align-items:center;gap:10px;font-size:13px}.leg .dot{width:11px;height:11px;border-radius:3px;flex-shrink:0}
+.leg .lname{color:var(--ink);font-weight:600}.leg .lcount{margin-left:auto;color:var(--grey);font-weight:600}
+.leg .lpct{color:var(--greyl);font-size:11.5px;width:38px;text-align:right}
+.today-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.prio{display:flex;align-items:center;gap:9px;margin:16px 0 9px;font-size:12px;letter-spacing:.8px;text-transform:uppercase;font-weight:700;color:var(--grey)}
+.prio .pnum{width:20px;height:20px;border-radius:50%;background:var(--nude);color:var(--char);display:flex;align-items:center;justify-content:center;font-size:11px}
+.prio.urgent{color:var(--pink)}.prio.urgent .pnum{background:var(--pink);color:#fff}
+.pcard{border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:9px;display:flex;gap:13px;align-items:center;background:var(--white);transition:.35s}
+.pcard.clearing{opacity:0;transform:translateX(30px)}
+.pcard.urgent{border-color:#EBC9D6;background:linear-gradient(90deg,var(--pinkw),#fff 60%)}
+.av{width:40px;height:40px;border-radius:50%;background:var(--nude);color:var(--char);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;border:1px solid var(--nuded)}
+.pcard.urgent .av{background:var(--pink);color:#fff;border:none}
+.pbody{flex:1;min-width:0}
+.pname{font-weight:700;color:var(--char);font-size:14.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mini-badge{font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:2px 7px;border-radius:12px;background:var(--nude);color:var(--ink)}
+.mini-badge.guest{background:var(--gold);color:#fff}.mini-badge.new{background:var(--sage);color:#fff}.mini-badge.urgent{background:var(--pink);color:#fff}
+.ptask{font-size:13px;color:var(--ink);margin-top:3px}.pmeta{font-size:11.5px;color:var(--greyl);margin-top:2px}
+.pcheck{width:34px;height:34px;border-radius:9px;border:1.5px solid var(--nuded);background:#fff;color:var(--sage);font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:.15s}
+.pcheck:hover{border-color:var(--sage);background:#f2f6ef}
+.celebrate{text-align:center;padding:40px 20px}
+.celebrate .c1{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--sage);margin-bottom:6px}
+.celebrate .c2{color:var(--grey);font-size:14px}
+.tabs{display:flex;gap:5px;margin:26px 0 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tab{background:none;color:var(--grey);padding:10px 15px;font-size:13.5px;font-weight:600;border-bottom:2px solid transparent;border-radius:0;margin-bottom:-1px}
+.tab.active{color:var(--char);border-bottom-color:var(--char)}
+.tab .cnt{display:inline-block;background:var(--nude);color:var(--ink);font-size:11px;padding:1px 7px;border-radius:20px;margin-left:5px;font-weight:700}
+.tab.active .cnt{background:var(--char);color:var(--nudel)}
+.gh{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--char);margin:20px 0 11px;display:flex;gap:9px;align-items:center}
+.gh .gc{font-size:11.5px;font-family:'Inter';font-weight:600;color:var(--grey);background:var(--nude);padding:2px 9px;border-radius:20px}
+.mcard{background:var(--white);border:1px solid var(--line);border-radius:11px;padding:13px 15px;margin-bottom:8px;display:flex;gap:13px;align-items:center}
+.mcard .cbody{flex:1;min-width:0}
+.mrow{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.mname{font-weight:700;color:var(--char);font-size:14px}
+.phb{font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:2px 8px;border-radius:12px}
+.phb.p0{background:var(--gold);color:#fff}.phb.p1{background:var(--nudel);color:var(--ink);border:1px solid var(--nuded)}
+.phb.p2{background:var(--nuded);color:var(--char)}.phb.p3{background:var(--char);color:var(--nudel)}.phb.p4{background:var(--pink);color:#fff}
+.warm-dot{font-size:11px;font-weight:600}.warm-gentle{color:var(--gold)}.warm-urgent{color:var(--pink)}
+.mchips{display:flex;gap:7px;margin-top:6px;flex-wrap:wrap}
+.mchip{font-size:11px;color:var(--grey);background:var(--nudel);border:1px solid var(--line);padding:2px 8px;border-radius:6px}
+.mchip.approx{color:var(--pink);background:var(--pinkw);border-color:#EBC9D6}
+.search{width:100%;border:1px solid var(--nuded);border-radius:9px;padding:10px 14px;font-size:14px;font-family:'Inter';background:#fff;margin-bottom:14px}
+.search:focus{outline:none;border-color:var(--grey)}
+.footer-note{margin-top:30px;padding:17px 20px;background:var(--nudel);border:1px solid var(--line);border-radius:12px;font-size:12.5px;color:var(--grey);line-height:1.65}
+.footer-note b{color:var(--ink)}
+.state{text-align:center;padding:70px 20px;color:var(--grey)}
+.state .s1{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--char);margin-bottom:8px}
+.state.err .s1{color:var(--pink)}
+.spinner{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.modal-bg{position:fixed;inset:0;background:rgba(43,39,36,.4);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+.modal-bg.show{display:flex}.modal{background:#fff;border-radius:16px;padding:26px;max-width:420px;width:100%}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:23px;color:var(--char);margin-bottom:4px}
+.modal p{font-size:13px;color:var(--grey);margin-bottom:16px}
+.fld{margin-bottom:13px}.fld label{display:block;font-size:12px;font-weight:600;color:var(--ink);margin-bottom:5px}
+.fld input{width:100%;border:1px solid var(--nuded);border-radius:8px;padding:10px 12px;font-family:'Inter';font-size:14px}
+</style></head><body>
+<div class="wrap">
+<header>
+  <div><div class="brand">WOMAN OF</div><div class="sub">Member Command Center &middot; <span id="synced">loading&hellip;</span></div></div>
+  <div class="hd-right"><button class="btn-ghost" onclick="openAdd()">+ Add member</button><button class="btn" id="refreshBtn" onclick="refresh()">Refresh</button></div>
+</header>
+
+<div id="app" style="display:none">
+  <div class="goal">
+    <div class="goal-top">
+      <div><div class="goal-l">Road to 1,000</div>
+        <div class="goal-nums"><span class="cur" id="gCur">0</span> <span class="goal-g">/ 1,000 members</span></div></div>
+      <div class="goal-right"><div class="goal-pct" id="gPct">0%</div><div class="goal-rem" id="gRem"></div></div>
+    </div>
+    <div class="bar"><div class="bar-fill" id="gBar"></div></div>
+    <div class="ticks"><span>0</span><span>250</span><span>500</span><span>750</span><span>1,000</span></div>
+  </div>
+  <div class="kpis" id="kpis"></div>
+  <div class="cols">
+    <div class="panel"><h2>Engagement</h2><div class="psub">Active members by phase</div>
+      <div class="pie-wrap"><svg id="pie" width="200" height="200" viewBox="0 0 42 42"></svg><div class="legend" id="legend"></div></div></div>
+    <div class="panel"><div class="today-h"><div><h2>Today</h2><div class="psub">Worked top to bottom. Clear each as you go.</div></div></div><div id="today"></div></div>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <input class="search" id="search" placeholder="Search members by name..." oninput="renderList()">
+  <div id="list"></div>
+  <div class="footer-note">
+    <b>Live from Circle.</b> This dashboard reads the WON Member Sync sheet, which refreshes every morning from Circle. Status from tags (Guest / Member / Legacy), phase from behavior (posts, comments), warmth from last-seen. Notes and cleared touches save in your browser. <b>Ambassador is approximate</b> until the referral engine confirms who brings others.
+  </div>
+</div>
+
+<div id="loading" class="state"><div class="s1">Reading the roster&hellip;</div><div>Pulling today&rsquo;s numbers from Circle.</div></div>
+<div id="error" class="state err" style="display:none"><div class="s1">Couldn&rsquo;t reach the data feed</div><div id="errMsg"></div></div>
+<div id="empty" class="state" style="display:none"><div class="s1">Waiting for the first sync</div><div>The sheet is connected but has no members yet. Once the morning sync runs, they&rsquo;ll appear here.</div></div>
+</div>
+
+<div class="modal-bg" id="addModal"><div class="modal"><h3>Add a member</h3>
+<p>For someone brand new who isn&rsquo;t in the roster yet. Saved in your browser only.</p>
+<div class="fld"><label>Name</label><input id="mName" placeholder="First Last"></div>
+<div class="fld"><label>Join date</label><input id="mDate" type="date"></div>
+<div style="display:flex;gap:10px;margin-top:18px"><button class="btn" onclick="addMember()">Add</button><button class="btn-ghost" onclick="closeAdd()">Cancel</button></div>
+</div></div>
+
+<script>
+const GOAL=1000; const NOW=new Date();
+let MEMBERS=[]; let STATE={done:{},notes:{},manual:[]}; let TAB='phase';
+
+/* ---------- persistence: real localStorage (hosted site) ---------- */
+function lsGet(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function loadState(){STATE.done=lsGet('won_done')||{};STATE.notes=lsGet('won_notes')||{};STATE.manual=lsGet('won_manual')||[];}
+
+/* ---------- CSV parsing (handles quoted fields with commas) ---------- */
+function parseCSV(text){
+  const rows=[];let i=0,field='',row=[],inQ=false;
+  while(i<text.length){const c=text[i];
+    if(inQ){ if(c==='"'){ if(text[i+1]==='"'){field+='"';i+=2;continue;} inQ=false;i++;continue;} field+=c;i++;continue;}
+    if(c==='"'){inQ=true;i++;continue;}
+    if(c===','){row.push(field);field='';i++;continue;}
+    if(c==='\r'){i++;continue;}
+    if(c==='\n'){row.push(field);rows.push(row);row=[];field='';i++;continue;}
+    field+=c;i++;
+  }
+  if(field.length||row.length){row.push(field);rows.push(row);}
+  return rows;
+}
+function csvToMembers(text){
+  const rows=parseCSV(text).filter(r=>r.length&&r.some(c=>(c||'').trim()!==''));
+  if(rows.length<1)return [];
+  const header=rows[0].map(h=>(h||'').trim().toLowerCase());
+  const idx=n=>header.indexOf(n);
+  const out=[];
+  for(let r=1;r<rows.length;r++){const row=rows[r];
+    const g=n=>{const j=idx(n);return j>=0?((row[j]||'').trim()):'';};
+    const tags=g('tags');
+    out.push({id:g('id')||('r'+r),name:g('name'),joined:g('joined')||null,last_seen:g('last_seen')||null,
+      posts:parseInt(g('posts'))||0,comments:parseInt(g('comments'))||0,level:g('level')||null,
+      tags:tags?tags.split(',').map(s=>s.trim()).filter(Boolean):[],profile_url:null,location:'',headline:''});
+  }
+  return out;
+}
+async function fetchMembers(){
+  const res=await fetch('/api/members?t='+Date.now(),{cache:'no-store'});
+  const txt=await res.text();
+  if(!res.ok){let m=txt;try{m=JSON.parse(txt).error||txt;}catch(e){} throw new Error(m);}
+  return csvToMembers(txt);
+}
+
+/* ---------- model ---------- */
+function dS(iso){if(!iso)return null;const d=new Date(iso);if(isNaN(d))return null;return Math.floor((NOW-d)/86400000);}
+function initials(n){return (n||'?').split(' ').filter(Boolean).slice(0,2).map(x=>x[0].toUpperCase()).join('');}
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+const PHASES={0:{label:'Guest',n:0},1:{label:'Member',n:1},2:{label:'Active',n:2},3:{label:'Contributor',n:3},4:{label:'Ambassador',n:4}};
+function classify(m){
+ const tags=m.tags||[];const ls=dS(m.last_seen);const active=(ls!=null&&ls<30);
+ let warmth='warm';if(ls==null)warmth='gone';else if(ls>=30)warmth='gone';else if(ls>=21)warmth='urgent';else if(ls>=14)warmth='gentle';
+ const legacy=tags.includes('Legacy Member');
+ const posts=m.posts||0,comments=m.comments||0,combined=posts+comments;let phase,approx=false;
+ if(tags.includes('WON Guest'))phase=0;
+ else if(combined===0)phase=1;
+ else if(combined<=2)phase=2;
+ else if(posts>=3&&comments>=5&&ls!=null&&ls<14){phase=4;approx=true;}
+ else phase=3;
+ return {...m,ls,active,warmth,legacy,phase,posts,comments,combined,approx};
+}
+function members(){return MEMBERS.concat(STATE.manual.map(x=>({...x,posts:0,comments:0,tags:x.tags||[]}))).map(classify);}
+function activeMembers(){return members().filter(m=>m.active&&!m.legacy);}
+
+function todayItems(){
+ const A=activeMembers();const items=[];
+ A.filter(m=>{const jd=dS(m.joined);return jd!=null&&jd<=2;}).sort((a,b)=>(dS(a.joined)||0)-(dS(b.joined)||0)).forEach(m=>{
+   if(m.phase===0)items.push({type:'welcome_guest',urgent:true,m,task:'Welcome her now. Warm hello, then point her to the door.',prio:0});
+   else items.push({type:'welcome_member',urgent:true,m,task:'Welcome her now. Warm hello, then invite her to the table.',prio:0});});
+ A.filter(m=>m.warmth==='urgent'&&m.phase!==0).forEach(m=>items.push({type:'winback',urgent:true,m,task:'Reach out before she\u2019s gone. \u201CWe\u2019ve missed you.\u201D',prio:1}));
+ A.filter(m=>m.phase===0&&(dS(m.joined)==null||dS(m.joined)>2)).sort((a,b)=>(dS(b.joined)||0)-(dS(a.joined)||0)).forEach(m=>items.push({type:'convert',m,task:'Help her cross the CONNECT paywall.',prio:2}));
+ A.filter(m=>m.warmth==='gentle'&&m.phase!==0).forEach(m=>items.push({type:'hello',m,task:'A light hello. \u201CThinking of you.\u201D',prio:3}));
+ A.filter(m=>m.phase===1&&m.warmth==='warm'&&(dS(m.joined)==null||dS(m.joined)>2)).forEach(m=>items.push({type:'activate',m,task:'Nudge one first step. Get her doing, not just watching.',prio:4}));
+ return items.filter(it=>!STATE.done[it.type+':'+it.m.id]);
+}
+
+function renderGoal(){const total=MEMBERS.length+STATE.manual.length;const pct=Math.min(100,Math.round(total/GOAL*100));
+ document.getElementById('gCur').textContent=total.toLocaleString();document.getElementById('gPct').textContent=pct+'%';
+ document.getElementById('gRem').textContent=(GOAL-total).toLocaleString()+' to go';
+ setTimeout(()=>{document.getElementById('gBar').style.width=Math.max(2,pct)+'%';},150);}
+function renderKPIs(){const A=activeMembers();
+ const guests=A.filter(m=>m.phase===0).length;const activated=A.filter(m=>m.combined>=1).length;
+ const actRate=A.length?Math.round(activated/A.length*100):0;const cooling=A.filter(m=>m.warmth==='gentle'||m.warmth==='urgent').length;
+ const amb=A.filter(m=>m.phase>=3).length;const ambRatio=A.length?Math.round(amb/A.length*100):0;
+ const k=[{n:guests,l:'Guests to convert',sub:'unconverted WON Guests',alert:guests>0,snap:0},
+  {n:actRate+'%',l:'Activation rate',sub:'took 1+ action',snap:1},{n:A.length,l:'Active members',sub:'seen within 30 days',snap:1},
+  {n:cooling,l:'Fading now',sub:'cooling, needs a touch',alert:cooling>0,snap:0},
+  {n:ambRatio+'%',l:'Ambassador ratio',sub:'contributing or referring',snap:1},{n:'\u2014',l:'Phase progression',sub:'tracked month over month',snap:2}];
+ document.getElementById('kpis').innerHTML=k.map(x=>`<div class="kpi ${x.alert?'alert':''}">${x.snap===2?'<span class="tag-snap">needs history</span>':x.snap===1?'<span class="tag-snap">snapshot</span>':''}<div class="kn">${x.n}</div><div class="kl">${x.l}</div><div class="ksub">${x.sub}</div></div>`).join('');}
+const PIE_COLORS={0:'#C9A24B',1:'#E2D8CB',2:'#B9B2A9',3:'#2B2724',4:'#C0396B'};
+function renderPie(){const A=activeMembers();const counts={0:0,1:0,2:0,3:0,4:0};A.forEach(m=>counts[m.phase]++);const total=A.length||1;
+ let off=0,paths='';[0,1,2,3,4].forEach(p=>{const len=counts[p]/total*100;
+  paths+=`<circle cx="21" cy="21" r="15.915" fill="transparent" stroke="${PIE_COLORS[p]}" stroke-width="7" stroke-dasharray="${len} ${100-len}" stroke-dashoffset="${25-off}"></circle>`;off+=len;});
+ document.getElementById('pie').innerHTML=`<circle cx="21" cy="21" r="15.915" fill="#fff"></circle>${paths}<text x="21" y="20" text-anchor="middle" font-size="7" font-weight="700" fill="#2B2724" font-family="Cormorant Garamond">${A.length}</text><text x="21" y="25.5" text-anchor="middle" font-size="2.6" fill="#8B857D" font-family="Inter" letter-spacing="0.2">ACTIVE</text>`;
+ document.getElementById('legend').innerHTML=[0,1,2,3,4].map(p=>{const v=counts[p];const pc=Math.round(v/total*100);return `<div class="leg"><span class="dot" style="background:${PIE_COLORS[p]}"></span><span class="lname">${PHASES[p].label}</span><span class="lcount">${v}</span><span class="lpct">${pc}%</span></div>`;}).join('');}
+function renderToday(){const items=todayItems();const el=document.getElementById('today');
+ if(!items.length){el.innerHTML=`<div class="celebrate"><div class="c1">All caught up</div><div class="c2">Every new arrival, every guest, every fading member has been touched today.</div></div>`;return;}
+ const groups=[{p:0,l:'Welcome her \u2014 first 48 hours',cls:'urgent'},{p:1,l:'Reach before she\u2019s gone',cls:'urgent'},{p:2,l:'Help her convert'},{p:3,l:'A light hello'},{p:4,l:'Get her started'}];
+ let html='';groups.forEach(g=>{const gi=items.filter(it=>it.prio===g.p);if(!gi.length)return;
+  html+=`<div class="prio ${g.cls||''}"><span class="pnum">${g.p}</span>${g.l} &middot; ${gi.length}</div>`;
+  gi.forEach(it=>{const m=it.m;let badge='';
+   if(it.type==='welcome_guest')badge='<span class="mini-badge guest">New Guest</span>';
+   else if(it.type==='welcome_member')badge='<span class="mini-badge new">New Member</span>';
+   else if(it.type==='convert')badge='<span class="mini-badge guest">Guest</span>';
+   else if(it.urgent)badge='<span class="mini-badge urgent">'+m.ls+'d quiet</span>';
+   const meta=(it.type==='welcome_guest'||it.type==='welcome_member')?('Joined '+(dS(m.joined)===0?'today':dS(m.joined)+'d ago')+' &middot; '+(m.phase===0?'WON Guest':'Member')):it.type==='convert'?('WON Guest &middot; '+(dS(m.joined)!=null?dS(m.joined)+' days in':'')):('Phase '+PHASES[m.phase].n+' '+PHASES[m.phase].label+(m.ls!=null?' &middot; last seen '+(m.ls===0?'today':m.ls+'d ago'):''));
+   html+=`<div class="pcard ${it.urgent?'urgent':''}" id="pc-${it.type}-${m.id}"><div class="av">${initials(m.name)}</div><div class="pbody"><div class="pname">${esc(m.name)} ${badge}</div><div class="ptask">${it.task}</div><div class="pmeta">${meta}</div></div><button class="pcheck" title="Mark done" onclick="clearTask('${it.type}','${m.id}')">&#10003;</button></div>`;});});
+ el.innerHTML=html;}
+function clearTask(type,id){const card=document.getElementById('pc-'+type+'-'+id);if(card)card.classList.add('clearing');
+ STATE.done[type+':'+id]=true;lsSet('won_done',STATE.done);setTimeout(()=>{renderToday();renderTabs();},360);}
+function renderTabs(){const A=activeMembers();const guests=A.filter(m=>m.phase===0).length;const cooling=A.filter(m=>m.warmth!=='warm').length;
+ const t=[{k:'phase',l:'By Phase',c:A.length},{k:'guests',l:'Guest Queue',c:guests,alert:guests>0},{k:'reach',l:'Reach Out',c:cooling,alert:cooling>0},{k:'all',l:'All Active',c:A.length}];
+ document.getElementById('tabs').innerHTML=t.map(x=>`<button class="tab ${TAB===x.k?'active':''}" onclick="setTab('${x.k}')">${x.l}<span class="cnt">${x.c}</span></button>`).join('');}
+function setTab(k){TAB=k;renderList();}
+function mcard(m){const chips=[`<span class="mchip">${m.posts} posts &middot; ${m.comments} comments</span>`];
+ if(m.ls!=null)chips.push(`<span class="mchip">seen ${m.ls===0?'today':m.ls+'d ago'}</span>`);
+ if(m.approx)chips.push('<span class="mchip approx">Ambassador \u2014 approx</span>');
+ const warm=m.warmth==='urgent'?'<span class="warm-dot warm-urgent">\u25cf cooling urgent</span>':m.warmth==='gentle'?'<span class="warm-dot warm-gentle">\u25cf cooling</span>':'';
+ return `<div class="mcard"><div class="av">${initials(m.name)}</div><div class="cbody"><div class="mrow"><span class="mname">${esc(m.name)}</span><span class="phb p${m.phase}">${m.phase===0?'Guest':'P'+m.phase+' '+PHASES[m.phase].label}</span>${warm}</div><div class="mchips">${chips.join('')}</div></div></div>`;}
+function renderList(){renderTabs();const q=(document.getElementById('search').value||'').toLowerCase();let A=activeMembers();if(q)A=A.filter(m=>(m.name||'').toLowerCase().includes(q));const el=document.getElementById('list');
+ if(TAB==='guests'){const g=A.filter(m=>m.phase===0).sort((a,b)=>(dS(b.joined)||0)-(dS(a.joined)||0));el.innerHTML=g.length?`<div class="gh">Guests awaiting conversion <span class="gc">${g.length}</span></div>`+g.map(mcard).join(''):emptyMsg('No guests pending','Everyone active has converted.');}
+ else if(TAB==='reach'){const c=A.filter(m=>m.warmth!=='warm').sort((a,b)=>b.ls-a.ls);el.innerHTML=c.length?`<div class="gh">Cooling &mdash; work urgent first <span class="gc">${c.length}</span></div>`+c.map(mcard).join(''):emptyMsg('Everyone\u2019s warm','No fading members right now.');}
+ else if(TAB==='all'){el.innerHTML=`<div class="gh">All active members <span class="gc">${A.length}</span></div>`+A.slice(0,120).map(mcard).join('')+(A.length>120?`<div style="color:var(--greyl);font-size:12px;padding:8px">Showing 120 of ${A.length}. Search to narrow.</div>`:'');}
+ else{let html='';[0,1,2,3,4].forEach(p=>{const g=A.filter(m=>m.phase===p);if(!g.length)return;html+=`<div class="gh">${p===0?'Guest':'Phase '+p+' \u00b7 '+PHASES[p].label} <span class="gc">${g.length}</span></div>`+g.map(mcard).join('');});el.innerHTML=html;}}
+function emptyMsg(a,b){return `<div class="celebrate"><div class="c1">${a}</div><div class="c2">${b}</div></div>`;}
+
+function openAdd(){document.getElementById('addModal').classList.add('show');}
+function closeAdd(){document.getElementById('addModal').classList.remove('show');}
+function addMember(){const name=document.getElementById('mName').value.trim();const date=document.getElementById('mDate').value;if(!name||!date)return;
+ STATE.manual.push({id:'m_'+Date.now(),name,joined:new Date(date).toISOString(),last_seen:new Date().toISOString(),tags:[]});lsSet('won_manual',STATE.manual);
+ document.getElementById('mName').value='';document.getElementById('mDate').value='';closeAdd();renderAll();}
+
+function renderAll(){renderGoal();renderKPIs();renderPie();renderToday();renderList();
+ document.getElementById('synced').textContent='updated '+NOW.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' \u00b7 '+(MEMBERS.length+STATE.manual.length)+' members';}
+function show(id){['loading','error','empty','app'].forEach(x=>document.getElementById(x).style.display=(x===id?(x==='app'?'block':'block'):'none'));}
+
+async function refresh(){const btn=document.getElementById('refreshBtn');btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Reading&hellip;';
+ try{MEMBERS=await fetchMembers();
+   if(!MEMBERS.length&&!STATE.manual.length){show('empty');}else{show('app');renderAll();}
+ }catch(e){document.getElementById('errMsg').textContent=e.message||String(e);show('error');}
+ finally{btn.disabled=false;btn.textContent='Refresh';}}
+
+(async function(){loadState();
+ try{MEMBERS=await fetchMembers();
+   if(!MEMBERS.length&&!STATE.manual.length){show('empty');}else{show('app');renderAll();}
+ }catch(e){document.getElementById('errMsg').textContent=e.message||String(e);show('error');}
+})();
+</script></body></html>

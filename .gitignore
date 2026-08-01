@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# Vercel
+.vercel
+
+# Node (none used, but just in case)
+node_modules
